@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+/*
+ * Helper module version. Kept in lock-step with the application version
+ * declared in kosmix/src/main/resources/app.properties.
+ */
+version '1.0.0'
+
+/*
+ * The helper module is intentionally dependency-free: platform utilities,
+ * the thread pool and the settings stack only rely on java.base.
+ */
+dependencies {
+}

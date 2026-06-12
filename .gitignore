@@ -1,0 +1,14 @@
+/svg/
+/screenshots/
+/kosmix/build/
+*/build
+*/build/*
+/CLAUDE.md
+/build/
+/.idea/
+/.gradle/
+/.claude/
+/gradle/
+/innosetup/data/Kosmix.exe
+/innosetup/data/runtime/
+/innosetup/data/app/

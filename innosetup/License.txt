@@ -1,0 +1,43 @@
+Kosmix — End User License Agreement
+
+Read carefully before accepting the agreement.
+Last updated: June 11, 2026
+
+1. ACCEPTANCE
+By installing or using Kosmix (the "Software") you agree to the terms
+of this agreement. If you do not agree, do not install or use the
+Software.
+
+2. PURPOSE
+Kosmix is an experimental desktop application created to test and
+showcase rendering and media capabilities. It is provided for personal,
+non-commercial evaluation use.
+
+3. LICENSE GRANT
+You are granted a personal, non-exclusive, non-transferable, revocable
+license to install and use the Software on devices you own or control.
+
+4. RESTRICTIONS
+You may not (a) redistribute, sell, rent or sublicense the Software;
+(b) reverse engineer, decompile or disassemble it except where allowed
+by law; (c) remove or alter any notices contained in the Software.
+
+5. THIRD-PARTY CONTENT
+The Software can access content from third-party services. All such
+content belongs to its respective owners and is subject to the terms of
+those services. You are solely responsible for complying with the terms
+of any service accessed through the Software. Kosmix is not affiliated
+with, endorsed by, or sponsored by YouTube or Google.
+
+6. NO WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+7. TERMINATION
+This license terminates automatically if you breach any of its terms.
+Upon termination you must uninstall the Software.

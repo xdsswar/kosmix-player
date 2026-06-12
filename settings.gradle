@@ -1,0 +1,12 @@
+/*
+ * Root project name. The application modules live in their own
+ * sub-directories and are included below.
+ */
+rootProject.name = 'Kosmix'
+
+/*
+ * Application modules:
+ *  - helper : platform utilities, threading and settings infrastructure
+ *  - kosmix : the main desktop application (UI, services, resources)
+ */
+include('helper', 'kosmix')

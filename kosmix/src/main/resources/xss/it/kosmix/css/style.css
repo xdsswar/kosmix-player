@@ -1,0 +1,803 @@
+/*
+========================================================================================================================
+    AppName : Kosmix
+    Author  : XDSSWAR
+    Theme   : Light, styled after YouTube web (Roboto, white surfaces,
+              #0f0f0f ink, #065fd4 accent, #cc0000 brand red)
+========================================================================================================================
+*/
+
+/*
+========================================================================================================================
+                                                  THEME TOKENS
+========================================================================================================================
+*/
+.root {
+    /* ---- Surfaces ---- */
+    -app-bg:            #ffffff;
+    -app-bg-soft:       #f9f9f9;
+    -app-surface:       #ffffff;
+    -app-hover:         #f2f2f2;
+    -app-chip:          #f2f2f2;
+
+    /* ---- Ink ---- */
+    -app-ink:           #0f0f0f;
+    -app-ink-soft:      #404040;
+    -app-ink-mute:      #606060;
+    -app-ink-faint:     #909090;
+
+    /* ---- Brand / accents ---- */
+    -app-red:           #cc0000;
+    -app-red-soft:      #ff4e45;
+    -app-link:          #065fd4;
+
+    /* ---- Borders / lines ---- */
+    -app-border:        #e5e5e5;
+    -app-border-mute:   #d9d9d9;
+
+    /* ---- Player (dark) ---- */
+    -app-player-bg:     #0f0f0f;
+
+    -fx-font-family: "Roboto";
+    -fx-font-size: 13px;
+    -fx-background-color: -app-bg;
+    -fx-text-fill: -app-ink;
+}
+
+.skeleton {
+    -fx-background-color: -app-bg;
+}
+
+.content-holder {
+    -fx-background-color: -app-bg;
+}
+
+/*
+========================================================================================================================
+                                                  LOADER
+    Dual-circle pulse loader (port of NfxDualLoader). Red radial pulse
+    on a frosted overlay.
+========================================================================================================================
+*/
+.loader-overlay {
+    -fx-background-color: rgba(255, 255, 255, 0.72);
+}
+
+.nfx-dual-loader {
+    -nfx-radius: 10;
+    -nfx-inner-color: rgb(255, 78, 69);
+    -nfx-outer-color: rgb(204, 0, 0);
+    -nfx-cycle-duration: 0.7;
+}
+
+/*
+========================================================================================================================
+                                                  TITLE BAR
+========================================================================================================================
+*/
+.title-bar {
+    -fx-background-color: -app-bg;
+    -fx-border-color: transparent transparent -app-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.brand-mark {
+    -fx-cursor: hand;
+}
+
+.brand-name {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 19px;
+    -fx-text-fill: -app-ink;
+}
+
+.brand {
+    -fx-cursor: hand;
+}
+
+/* ---- pill search ---- */
+.search-box {
+    -fx-background-color: transparent;
+}
+
+.search-field {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 20 0 0 20;
+    -fx-border-color: -app-border-mute;
+    -fx-border-width: 1 0 1 1;
+    -fx-border-radius: 20 0 0 20;
+    -fx-padding: 7 16 7 16;
+    -fx-text-fill: -app-ink;
+    -fx-prompt-text-fill: -app-ink-faint;
+    -fx-highlight-fill: #cfe3ff;
+}
+
+.search-field:focused {
+    -fx-border-color: #1a73e8;
+}
+
+.search-btn {
+    -fx-background-color: -app-bg-soft;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-color: -app-border-mute;
+    -fx-border-width: 1 1 1 0;
+    -fx-border-radius: 0 20 20 0;
+    -fx-min-width: 60;
+    -fx-cursor: hand;
+}
+
+.search-btn:hover {
+    -fx-background-color: -app-hover;
+}
+
+.search-clear {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-min-width: 22;
+    -fx-min-height: 22;
+    -fx-max-width: 22;
+    -fx-max-height: 22;
+    -fx-cursor: hand;
+}
+
+.search-clear:hover {
+    -fx-background-color: -app-hover;
+}
+
+/* Popups live outside the scene root, so the -app-* design tokens
+   (defined on .root) don't cascade to them — these rules use literal
+   colors so the dropdown is solid and its text is clearly visible. */
+.search-suggestions {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-border-color: #e5e5e5;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 20, 0.12, 0, 5);
+}
+
+.suggestion-item {
+    -fx-font-size: 13.5px;
+    -fx-text-fill: #0f0f0f;
+    -fx-padding: 8 12 8 12;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.suggestion-item:hover {
+    -fx-background-color: #f2f2f2;
+}
+
+/* ---- round chrome buttons (downloads, settings) ---- */
+.chrome-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+}
+
+.chrome-btn:hover {
+    -fx-background-color: -app-hover;
+}
+
+/* ---- caption buttons; :ht-* pseudo classes come from the native
+       hit-test routing of StageStyle.CUSTOM ---- */
+.win-btn {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.win-btn:hover, .win-btn:ht-min, .win-btn:ht-max {
+    -fx-background-color: -app-hover;
+}
+
+.win-btn-close:hover, .win-btn-close:ht-close {
+    -fx-background-color: #e81123;
+}
+
+/* Close glyph: dark normally, white over the red hover/native hit
+   region (the icon is left untinted in code so CSS controls it). */
+.win-btn-close .svg-image-view {
+    -svg-tint: #0f0f0f;
+    -svg-tint-mode: src-in;
+}
+
+.win-btn-close:hover .svg-image-view,
+.win-btn-close:ht-close .svg-image-view {
+    -svg-tint: #ffffff;
+    -svg-tint-mode: src-in;
+}
+
+/*
+========================================================================================================================
+                                                  HOME GRID
+========================================================================================================================
+*/
+.home {
+    -fx-background-color: -app-bg;
+}
+
+.home-message {
+    -fx-font-size: 16px;
+    -fx-text-fill: -app-ink-mute;
+}
+
+.video-grid {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+    -nfx-cell-height: 332;
+    -nfx-min-cell-width-break-point: 330;
+    -nfx-max-cells-per-row: 6;
+    -nfx-left-gap: 0;
+    -nfx-right-gap: 14;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.video-grid .viewport,
+.video-grid .nfx-content {
+    -fx-background-color: transparent;
+}
+
+.video-grid .nfx-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+/* thin overlay-style scrollbar */
+.video-grid .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.video-grid .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.video-grid .scroll-bar .increment-button,
+.video-grid .scroll-bar .decrement-button,
+.video-grid .scroll-bar .increment-arrow,
+.video-grid .scroll-bar .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-shape: none;
+    -fx-padding: 0;
+    visibility: hidden;
+}
+
+.video-grid .scroll-bar:vertical .thumb {
+    -fx-background-color: #c9c9c9;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.video-grid .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #a8a8a8;
+}
+
+/* ---- cards ---- */
+.async-thumb, .storyboard-frame {
+    -fx-background-color: #e8e8e8;
+}
+
+.duration-badge {
+    -fx-background-color: rgba(0, 0, 0, 0.82);
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+    -fx-font-size: 11.5px;
+    -fx-font-family: "Roboto Medium";
+    -fx-padding: 2 5 2 5;
+}
+
+.card-title {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14.5px;
+    -fx-text-fill: -app-ink;
+    -fx-line-spacing: 1;
+}
+
+.card-channel {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: -app-ink-mute;
+}
+
+.card-meta {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: -app-ink-mute;
+}
+
+/*
+========================================================================================================================
+                                                  WATCH PAGE
+========================================================================================================================
+*/
+.player-page {
+    -fx-background-color: -app-bg;
+}
+
+.watch-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.watch-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.watch-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.watch-scroll .scroll-bar .increment-button,
+.watch-scroll .scroll-bar .decrement-button,
+.watch-scroll .scroll-bar .increment-arrow,
+.watch-scroll .scroll-bar .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-shape: none;
+    -fx-padding: 0;
+    visibility: hidden;
+}
+
+.watch-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #c9c9c9;
+    -fx-background-radius: 5;
+}
+
+.video-surface {
+    -fx-background-color: -app-player-bg;
+    -fx-background-radius: 14;
+}
+
+/* Fullscreen: edge-to-edge, no rounded corners on the surface or the
+   control bar that hugs its bottom. */
+.video-surface.fullscreen {
+    -fx-background-radius: 0;
+}
+
+.video-surface.fullscreen .player-controls {
+    -fx-background-radius: 0;
+}
+
+/* ---- branded splash overlay on the video surface ---- */
+.brand-overlay {
+    -fx-background-color: radial-gradient(
+            center 50% 42%, radius 75%,
+            #1d1d1f 0%,
+            #121214 55%,
+            #0c0c0e 100%
+    );
+    -fx-background-radius: 14;
+}
+
+.brand-overlay-title {
+    -fx-font-family: "Roboto Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(255, 23, 48, 0.45), 22, 0.25, 0, 0);
+}
+
+.brand-overlay-sub {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(255, 255, 255, 0.62);
+}
+
+/* ---- quality menu ---- */
+.quality-menu {
+    -fx-background-color: rgba(22, 22, 24, 0.96);
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 18, 0.2, 0, 4);
+    -fx-min-width: 170;
+}
+
+.quality-item {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 13.5px;
+    -fx-text-fill: #f1f1f1;
+    -fx-padding: 8 16 8 12;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.quality-item:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    -fx-text-fill: white;
+}
+
+.quality-header {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(255, 255, 255, 0.6);
+    -fx-padding: 2 10 6 12;
+}
+
+/* ---- downloads history popup (literal colors: popups don't inherit
+   the -app-* tokens defined on .root) ---- */
+.downloads-counter {
+    -fx-background-color: #cc0000;
+    -fx-background-radius: 9;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-family: "Roboto Medium";
+    -fx-padding: 0 5 0 5;
+    -fx-translate-x: 4;
+    -fx-translate-y: 2;
+}
+
+.downloads-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-border-color: #e5e5e5;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 22, 0.14, 0, 6);
+}
+
+.downloads-title {
+    -fx-font-family: "Roboto Bold";
+    -fx-font-size: 15px;
+    -fx-text-fill: #0f0f0f;
+    -fx-padding: 0 0 4 4;
+}
+
+.downloads-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.downloads-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.downloads-empty {
+    -fx-text-fill: #606060;
+    -fx-padding: 12;
+}
+
+.download-row {
+    -fx-background-color: #f9f9f9;
+    -fx-background-radius: 10;
+}
+
+.download-row:hover {
+    -fx-background-color: #f2f2f2;
+}
+
+.download-folder {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.download-folder:hover {
+    -fx-background-color: #e5e5e5;
+}
+
+.player-error {
+    -fx-text-fill: #ffb4ab;
+    -fx-font-size: 14px;
+    -fx-background-color: rgba(0, 0, 0, 0.55);
+    -fx-background-radius: 8;
+    -fx-padding: 10 14 10 14;
+}
+
+/* ---- control bar over the video ---- */
+.player-controls {
+    -fx-background-color: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.55) 55%,
+            rgba(0, 0, 0, 0.78) 100%
+    );
+    -fx-background-radius: 0 0 14 14;
+    -fx-padding: 14 0 4 0;
+}
+
+.ctrl-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.ctrl-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+}
+
+.time-label {
+    -fx-text-fill: white;
+    -fx-font-size: 12.5px;
+    -fx-padding: 0 0 0 6;
+}
+
+/* ---- sliders (seek + volume), YouTube red ---- */
+.seek-slider, .volume-slider {
+    -fx-padding: 6 0 6 0;
+}
+
+.seek-slider .track, .volume-slider .track {
+    -fx-background-color: rgba(255, 255, 255, 0.32);
+    -fx-background-radius: 2;
+    -fx-pref-height: 4;
+}
+
+.seek-slider .thumb, .volume-slider .thumb {
+    -fx-background-color: -app-red-soft;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 13;
+    -fx-pref-height: 13;
+    -fx-cursor: hand;
+}
+
+.seek-slider:hover .thumb {
+    -fx-background-color: #ff1730;
+}
+
+/* ---- seek storyboard popup ---- */
+.seek-popup {
+    -fx-background-color: rgba(15, 15, 15, 0.92);
+    -fx-background-radius: 10;
+    -fx-padding: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 18, 0.2, 0, 4);
+}
+
+.seek-time {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-family: "Roboto Medium";
+}
+
+/* ---- info under the video ---- */
+.watch-title {
+    -fx-font-family: "Roboto Bold";
+    -fx-font-size: 19px;
+    -fx-text-fill: -app-ink;
+}
+
+.watch-channel {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 14px;
+    -fx-text-fill: -app-ink;
+}
+
+.watch-description-box {
+    -fx-background-color: -app-bg-soft;
+    -fx-background-radius: 12;
+}
+
+.watch-stats {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 13.5px;
+    -fx-text-fill: -app-ink;
+}
+
+.watch-description {
+    -fx-font-size: 13.5px;
+    -fx-text-fill: -app-ink-soft;
+    -fx-line-spacing: 2;
+}
+
+.watch-more {
+    -fx-font-family: "Roboto Medium";
+    -fx-text-fill: -app-ink-mute;
+    -fx-cursor: hand;
+}
+
+.watch-more:hover {
+    -fx-text-fill: -app-ink;
+}
+
+/* ---- related rail ---- */
+.related-card {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 4;
+}
+
+.related-card:hover {
+    -fx-background-color: -app-hover;
+}
+
+.related-title {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 13.5px;
+    -fx-text-fill: -app-ink;
+}
+
+.related-channel, .related-meta {
+    -fx-font-size: 12px;
+    -fx-text-fill: -app-ink-mute;
+}
+
+/*
+========================================================================================================================
+                                                  DOWNLOAD PROGRESS
+========================================================================================================================
+*/
+.downloads-panel {
+    -fx-background-color: transparent;
+}
+
+.download-toast {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.20), 22, 0.14, 0, 6);
+    -fx-min-width: 320;
+    -fx-max-width: 360;
+}
+
+.download-toast.download-done {
+    -fx-border-color: #34a853;
+    -fx-cursor: hand;
+}
+
+.download-toast.download-failed {
+    -fx-border-color: -app-red;
+}
+
+.download-title {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 12.5px;
+    -fx-text-fill: #0f0f0f;
+}
+
+.download-status {
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #606060;
+}
+
+.download-done .download-status {
+    -fx-text-fill: #1a7f37;
+}
+
+.download-failed .download-status {
+    -fx-text-fill: #cc0000;
+}
+
+.download-percent {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #404040;
+}
+
+.download-bar {
+    -fx-pref-height: 6;
+}
+
+.download-bar .track {
+    -fx-background-color: #e3e3e3;
+    -fx-background-radius: 3;
+}
+
+.download-bar .bar {
+    -fx-background-color: -app-red;
+    -fx-background-radius: 3;
+    -fx-background-insets: 0;
+    -fx-padding: 3;
+}
+
+/*
+========================================================================================================================
+                                                  SETTINGS PAGE
+========================================================================================================================
+*/
+.settings-page {
+    -fx-background-color: -app-bg;
+}
+
+.settings-heading {
+    -fx-font-family: "Roboto Bold";
+    -fx-font-size: 22px;
+    -fx-text-fill: -app-ink;
+}
+
+.settings-sub {
+    -fx-font-size: 13.5px;
+    -fx-text-fill: -app-ink-mute;
+}
+
+.settings-form {
+    -fx-background-color: -app-bg-soft;
+    -fx-background-radius: 14;
+}
+
+.settings-section-title {
+    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 15px;
+    -fx-text-fill: -app-ink;
+    -fx-padding: 0 0 6 0;
+}
+
+.settings-hint {
+    -fx-font-size: 12px;
+    -fx-text-fill: -app-ink-faint;
+}
+
+.settings-form .spinner {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -app-border-mute;
+    -fx-border-radius: 8;
+}
+
+.settings-form .spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.settings-form .check-box {
+    -fx-text-fill: -app-ink-soft;
+}
+
+.settings-label {
+    -fx-font-family: "Roboto Medium";
+    -fx-text-fill: -app-ink-soft;
+}
+
+.settings-form .text-field {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -app-border-mute;
+    -fx-border-radius: 8;
+    -fx-padding: 7 10 7 10;
+}
+
+.settings-form .text-field:focused {
+    -fx-border-color: #1a73e8;
+}
+
+.settings-form .combo-box {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -app-border-mute;
+    -fx-border-radius: 8;
+}
+
+.settings-btn {
+    -fx-background-color: -app-chip;
+    -fx-background-radius: 18;
+    -fx-text-fill: -app-ink;
+    -fx-font-family: "Roboto Medium";
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.settings-btn:hover {
+    -fx-background-color: -app-hover;
+}
+
+.settings-apply {
+    -fx-background-color: -app-ink;
+    -fx-text-fill: white;
+}
+
+.settings-apply:hover {
+    -fx-background-color: #2b2b2b;
+}
+
+.settings-ffmpeg {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: -app-ink-mute;
+}
+
+.settings-about {
+    -fx-font-size: 12px;
+    -fx-text-fill: -app-ink-faint;
+}
+
+/*
+========================================================================================================================
+                                                  GENERIC
+========================================================================================================================
+*/
+.tooltip {
+    -fx-background-color: rgba(40, 40, 40, 0.95);
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-font-size: 11.5px;
+    -fx-padding: 5 9 5 9;
+}
