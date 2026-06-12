@@ -15,12 +15,16 @@
 > ## ⚠️ READ THIS FIRST — DEMO / SHOWCASE ONLY
 >
 > **Kosmix is a technology demo. It is NOT a product, NOT stable, and NOT supported.**
+> The goal is not to ship a usable YouTube client — it is to showcase what the
+> **[skia-fx](https://github.com/xdsswar/skiafx) SDK** can do.
 >
 > It exists for one reason: to **stress-test and show off the [skia-fx](https://github.com/xdsswar/skiafx) SDK** —
 > a Skia-powered fork of OpenJFX — with a real, demanding application (custom window
 > chrome, GPU video, dual-source media, vector SVG, a virtualized grid, live network
 > data). Expect bugs, crashes, rough edges, half-finished corners, and breaking
 > changes. Nothing here is hardened, audited, or meant for daily use.
+> **The media player in particular may be unstable** — dual-source sync, seek coalescing,
+> and CDN drip-throttling are all exercised here specifically to test the SDK's limits.
 >
 > ### 🚫 Do NOT use Kosmix for piracy, redistribution, or any malicious purpose.
 >
