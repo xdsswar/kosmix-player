@@ -1,5 +1,4 @@
 /svg/
-/screenshots/
 /kosmix/build/
 */build
 */build/*
@@ -12,3 +11,5 @@
 /innosetup/data/Kosmix.exe
 /innosetup/data/runtime/
 /innosetup/data/app/
+/innosetup/Kosmix.exe
+/screenshots/

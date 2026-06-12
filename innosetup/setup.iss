@@ -7,7 +7,7 @@
 #define MyAppName "Kosmix"
 #define MyAppVersion "v1.0.0"
 #define MyAppExeName "Kosmix.exe"
-#define WORK_DIR = "F:\DEV\skiafx\kosmix\innosetup"
+#define WORK_DIR = "F:\DEV\kosmix\innosetup"
 
 
 
