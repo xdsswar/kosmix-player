@@ -44,6 +44,13 @@
 
 ---
 
+## 📸 Screenshots
+
+![Screenshot 1](images/1.png)
+![Screenshot 2](images/2.png)
+
+---
+
 ## ✨ What it does
 
 Kosmix looks and feels like the YouTube web app — light theme, Roboto, rounded cards —
